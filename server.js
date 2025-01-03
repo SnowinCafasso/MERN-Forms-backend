@@ -7,7 +7,8 @@ import userRoute from './routes/userRoute.js'
 
 const app = express();
 dotenv.config();
-const mongoURL = process.env.MONGO_URL
+const mongoURL = process.env.MONGO_URL;
+const PORT = process.env.PORT
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -24,6 +25,6 @@ app.use('/users',userRoute);
 mongoose.connect(mongoURL)
     .then(()=>{console.log("DB Connected")})
     .then(()=>{
-        app.listen(3000,()=>{console.log("Server Started")})
+        app.listen(PORT,()=>{console.log("Server Started")})
     })  
     .catch((error)=>{console.log(error)});
