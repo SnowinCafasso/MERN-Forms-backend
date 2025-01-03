@@ -26,7 +26,7 @@ router.post('/add', async (req, res) => {
             password: req.params.password
         }
         const user = await User.create(newUser);
-        return res.status(200).json({ message: 'Data Added Successfully' });
+        return res.status(200).json({ message: 'Data Added Successfully', data: newUser });
     } catch (error) {
         console.log(error.message);
         res.send(500).json({ message: error.message });

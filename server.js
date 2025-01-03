@@ -3,12 +3,11 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import userRoute from './routes/userRoute.js'
 
 const app = express();
-
 dotenv.config();
 const mongoURL = process.env.MONGO_URL
-
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -19,6 +18,8 @@ app.get('/',async (req, res) => {
         res.status(500).json({message:'Error occured',error});
     }
 });
+
+app.use('/users',userRoute);
 
 mongoose.connect(mongoURL)
     .then(()=>{console.log("DB Connected")})
